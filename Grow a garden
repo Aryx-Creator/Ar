@@ -1,0 +1,87 @@
+-- Grow a Garden GUI by You!
+
+local player = game.Players.LocalPlayer
+local gui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
+gui.Name = "GrowAGardenGUI"
+
+-- Main Frame
+local mainFrame = Instance.new("Frame")
+mainFrame.Name = "MainFrame"
+mainFrame.Size = UDim2.new(0, 400, 0, 250)
+mainFrame.Position = UDim2.new(0.5, -200, 0.5, -125)
+mainFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+mainFrame.BorderSizePixel = 0
+mainFrame.Parent = gui
+mainFrame.Active = true
+mainFrame.Draggable = true
+
+-- Tab Buttons
+local mainTab = Instance.new("TextButton")
+mainTab.Name = "MainTab"
+mainTab.Size = UDim2.new(0, 100, 0, 30)
+mainTab.Position = UDim2.new(0, 0, 0, 0)
+mainTab.Text = "MAIN"
+mainTab.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+mainTab.TextColor3 = Color3.new(1, 1, 1)
+mainTab.Parent = mainFrame
+
+local dupeTab = Instance.new("TextButton")
+dupeTab.Name = "DupeTab"
+dupeTab.Size = UDim2.new(0, 100, 0, 30)
+dupeTab.Position = UDim2.new(0, 100, 0, 0)
+dupeTab.Text = "DUPE"
+dupeTab.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+dupeTab.TextColor3 = Color3.new(1, 1, 1)
+dupeTab.Parent = mainFrame
+
+-- Pages
+local mainPage = Instance.new("Frame")
+mainPage.Name = "MainPage"
+mainPage.Size = UDim2.new(1, 0, 1, -30)
+mainPage.Position = UDim2.new(0, 0, 0, 30)
+mainPage.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+mainPage.Parent = mainFrame
+
+local dupePage = Instance.new("Frame")
+dupePage.Name = "DupePage"
+dupePage.Size = UDim2.new(1, 0, 1, -30)
+dupePage.Position = UDim2.new(0, 0, 0, 30)
+dupePage.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+dupePage.Visible = false
+dupePage.Parent = mainFrame
+
+-- Main Page Buttons
+local dupeButton = Instance.new("TextButton")
+dupeButton.Name = "DupeButton"
+dupeButton.Size = UDim2.new(0, 150, 0, 40)
+dupeButton.Position = UDim2.new(0, 20, 0, 20)
+dupeButton.Text = "DUPE"
+dupeButton.BackgroundColor3 = Color3.fromRGB(60, 0, 0)
+dupeButton.TextColor3 = Color3.new(1, 1, 1)
+dupeButton.Parent = mainPage
+
+local sellButton = Instance.new("TextButton")
+sellButton.Name = "SellButton"
+sellButton.Size = UDim2.new(0, 150, 0, 40)
+sellButton.Position = UDim2.new(0, 20, 0, 70)
+sellButton.Text = "SELL"
+sellButton.BackgroundColor3 = Color3.fromRGB(60, 0, 0)
+sellButton.TextColor3 = Color3.new(1, 1, 1)
+sellButton.Parent = mainPage
+
+-- Tab Switching
+local function switchTab(tabName)
+	mainPage.Visible = (tabName == "Main")
+	dupePage.Visible = (tabName == "Dupe")
+end
+
+mainTab.MouseButton1Click:Connect(function()
+	switchTab("Main")
+end)
+
+dupeTab.MouseButton1Click:Connect(function()
+	switchTab("Dupe")
+end)
+
+-- Default tab
+switchTab("Main")
